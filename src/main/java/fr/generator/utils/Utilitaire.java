@@ -9,7 +9,6 @@ import java.util.List;
 
 import static j2html.TagCreator.*;
 
-
 public class Utilitaire {
 
     public static void CreateAgentsListPage(List<Employe> lesEmployes) throws IOException {
@@ -45,4 +44,23 @@ public class Utilitaire {
             file.close();
         }
     }
+
+    // Pebble Template Engine
+   /* public static void test(List<Employe> lesEmployes) throws IOException{
+        PebbleEngine engine = new PebbleEngine.Builder().build();
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/agents.html");
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("employes", lesEmployes);
+
+        Writer writer = new StringWriter();
+        compiledTemplate.evaluate(writer, context);
+
+        String output = writer.toString();
+
+        FileWriter agents = new FileWriter("./web/agents.html");
+        agents.write(Formatter.toHtml("./templates/agents.html", "Agents", output));
+        agents.close();
+
+    }*/
 }

@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static j2html.TagCreator.*;
-import static j2html.TagCreator.h2;
 
-import static j2html.TagCreator.*;
 
 public class Utilitaire {
 

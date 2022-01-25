@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Accueil</title>
-</head>
-<body>
+{% extends "./base.html" %}
 
-<h1>Liste d'employés : </h1>
+{% block title %}Accueil{% endblock %}
 
-<div class="employes">
-{% for employe in employes %}
-    <div class="employe">
-        <a href="/{{ employe.getNomHtml() }}">
-            <h2>{{ employe.nom }}</h2>
-        </a>
+{% block content %}
+    <h1>Liste d'employés : </h1>
+
+    <div class="employes">
+    {% for employe in employes %}
+        <div class="employe">
+            <a href="/{{ employe.getNomHtml() }}">
+                <h2>{{ employe.nom }}</h2>
+            </a>
+        </div>
+    {% endfor %}
     </div>
-{% endfor %}
-</div>
-
-</body>
-</html>
+{% endblock %}

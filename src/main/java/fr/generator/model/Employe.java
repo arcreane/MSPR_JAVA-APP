@@ -62,12 +62,11 @@ public class Employe {
             String imgUrl = baseDir + line + ".jpg";
             Employe e = new Employe(infoEmploye[0], infoEmploye[1], imgUrl, infoEmploye[2], infoEmploye[3]);
             List<String> labelMateriels = lesMateriels.stream().map(Materiel::getCode).toList();
-            int idx = 0;
+
             for (String materiel : lstMaterielsEmpruntes){
                 if(labelMateriels.contains(materiel)){
-                    e.addMateriel(lesMateriels.get(idx));
+                    e.addMateriel(lesMateriels.get(labelMateriels.indexOf(materiel)));
                 }
-                idx++;
             }
             lesEmployes.add(e);
         }

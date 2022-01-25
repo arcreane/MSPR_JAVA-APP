@@ -9,9 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Hello");
-
-        //System.out.println(Formatter.toHtml("./templates/base.html", "test", "Hello World !"));
+        System.out.println("Start Generating HTML Pages .....");
 
         List<Materiel> lesMateriels = Materiel.getMaterielFromFile("./db/liste.txt");
 
@@ -20,8 +18,10 @@ public class Main {
             System.out.println(e);
         }
 
-        Utilitaire.CreateAgentsListPage(lesEmployes);
-        Utilitaire.CreateEachAgentsPage(lesEmployes);
-        //Utilitaire.test(lesEmployes);
+        Utilitaire.CreateAgentsListPageByTemplate(lesEmployes);
+        Utilitaire.CreateEachAgentsPageByTemplate(lesEmployes);
+
+
+        System.out.println("Finish :)");
     }
 }

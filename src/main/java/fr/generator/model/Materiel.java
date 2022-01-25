@@ -27,8 +27,11 @@ public class Materiel {
         List<Materiel> lesMateriels = new ArrayList<>();
         for (String line: lines
              ) {
+            int idxFirstSpace = line.indexOf(" ");
+            String code = line.substring(0, idxFirstSpace);
+            String label = line.substring(idxFirstSpace).strip();
             String[] lineAsArray = line.split(" ");
-            Materiel m = new Materiel(lineAsArray[0], lineAsArray[1]);
+            Materiel m = new Materiel(code, label);
             lesMateriels.add(m);
         }
         return lesMateriels;

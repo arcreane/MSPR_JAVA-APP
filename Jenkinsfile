@@ -20,7 +20,7 @@ pipeline {
                 
                 // mettre ces fichiers dans le dossier db dans workspace ex: /var/jenkins_home/workspace/
                 sh 'mv ./* ../db/'
-                sh 'echo $PWD'
+                //sh 'echo $PWD'
             }
 
         }

@@ -1,0 +1,47 @@
+pipeline {
+    
+    agent {
+        docker {
+            image 'maven:3.8.4-openjdk-17'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+
+    stages {
+        stage('Preparation') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/Alexon1999/MSPR_GO-SECURI'
+                
+                sh 'cd .. && rm -rf db && mkdir db'
+                
+                // sh revient au dossier de pipeline ex: /var/jenkins_home/workspace/GoSecuriJavaAppPipeline
+                //sh 'ls -a'
+                
+                // mettre ces fichiers dans le dossier db dans workspace ex: /var/jenkins_home/workspace/
+                sh 'mv ./* ../db/'
+                sh 'echo $PWD'
+            }
+
+        }
+        
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/ghilesalt/MSPR_JAVA-APP'
+                
+                sh 'mv ../db/* db/'
+                sh 'cd db && ls -a'
+                sh 'ls -a'
+                
+                sh 'mvn clean package'
+                sh 'java -jar target/mspr-1.0-SNAPSHOT-jar-with-dependencies.jar'
+                
+                // nettoyer avant puis mettre les pages html dans un autre dossier dans workspace
+                sh 'cd .. && rm -rf db'
+                sh 'rm -rf ../web && mkdir ../web && mv web/* ../web'
+            }
+
+        }
+    }
+}

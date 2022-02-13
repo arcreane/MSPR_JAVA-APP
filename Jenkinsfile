@@ -40,6 +40,8 @@ pipeline {
                 // nettoyer avant puis mettre les pages html dans un autre dossier dans workspace
                 sh 'cd .. && rm -rf db'
                 sh 'rm -rf ../web && mkdir ../web && mv web/* ../web'
+
+                sh 'echo "Build finish"'
             }
 
         }

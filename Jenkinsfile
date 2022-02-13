@@ -28,7 +28,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/ghilesalt/MSPR_JAVA-APP'
+                git 'https://github.com/Alexon1999/MSPR_JAVA-APP'
                 
                 sh 'mv ../db/* db/'
                 //sh 'cd db && ls -a'

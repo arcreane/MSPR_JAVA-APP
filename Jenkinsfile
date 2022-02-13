@@ -11,6 +11,7 @@ pipeline {
         stage('Preparation') {
             steps {
                 // Get some code from a GitHub repository
+                // Cloner le repo où sont stockés les data
                 git 'https://github.com/Alexon1999/MSPR_GO-SECURI'
                 
                 sh 'cd .. && rm -rf db && mkdir db'
@@ -21,6 +22,8 @@ pipeline {
                 // mettre ces fichiers dans le dossier db dans workspace ex: /var/jenkins_home/workspace/
                 sh 'mv ./* ../db/'
                 //sh 'echo $PWD'
+                
+                sh 'echo "Preparation finished"'
             }
 
         }
@@ -28,7 +31,11 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
+                // Cloner l'application java
                 git 'https://github.com/Alexon1999/MSPR_JAVA-APP'
+                
+                deleteAndCreateDirectory("db")
+                deleteAndCreateDirectory("web")
                 
                 sh 'mv ../db/* db/'
                 //sh 'cd db && ls -a'
@@ -39,11 +46,15 @@ pipeline {
                 
                 // nettoyer avant puis mettre les pages html dans un autre dossier dans workspace
                 sh 'cd .. && rm -rf db'
-                sh 'rm -rf ../web && mkdir ../web && mv web/* ../web'
+                sh 'rm -rf ../web && mkdir ../web && mv web/* ../web/'
 
-                sh 'echo "Build finish"'
+                sh 'echo "Build finished"'
             }
 
         }
     }
+}
+
+def deleteAndCreateDirectory(String dir) {
+        sh "rm -rf ${dir} && mkdir ${dir}"
 }

@@ -56,5 +56,5 @@ pipeline {
 }
 
 def deleteAndCreateDirectory(String dir) {
-        sh "rm -rf ${dir} && mkdir ${dir}"
+    sh "rm -rf ${dir} && mkdir ${dir}"
 }

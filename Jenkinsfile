@@ -31,8 +31,8 @@ pipeline {
                 git 'https://github.com/ghilesalt/MSPR_JAVA-APP'
                 
                 sh 'mv ../db/* db/'
-                sh 'cd db && ls -a'
-                sh 'ls -a'
+                //sh 'cd db && ls -a'
+                //sh 'ls -a'
                 
                 sh 'mvn clean package'
                 sh 'java -jar target/mspr-1.0-SNAPSHOT-jar-with-dependencies.jar'

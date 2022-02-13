@@ -14,7 +14,8 @@ pipeline {
                 // Cloner le repo où sont stockés les data
                 git 'https://github.com/Alexon1999/MSPR_GO-SECURI'
                 
-                sh 'cd .. && rm -rf db && mkdir db'
+                //sh 'cd .. && rm -rf db && mkdir db'
+                deleteAndCreateDirectory("../db")
                 
                 // sh revient au dossier de pipeline ex: /var/jenkins_home/workspace/GoSecuriJavaAppPipeline
                 //sh 'ls -a'
@@ -34,8 +35,10 @@ pipeline {
                 // Cloner l'application java
                 git 'https://github.com/Alexon1999/MSPR_JAVA-APP'
                 
+                // Réinitialiser
                 deleteAndCreateDirectory("db")
                 deleteAndCreateDirectory("web")
+                deleteAndCreateDirectory("../web")
                 
                 sh 'mv ../db/* db/'
                 //sh 'cd db && ls -a'
@@ -44,9 +47,13 @@ pipeline {
                 sh 'mvn clean package'
                 sh 'java -jar target/mspr-1.0-SNAPSHOT-jar-with-dependencies.jar'
                 
-                // nettoyer avant puis mettre les pages html dans un autre dossier dans workspace
-                sh 'cd .. && rm -rf db'
-                sh 'rm -rf ../web && mkdir ../web && mv web/* ../web/'
+                // Mettre les pages html dans un autre dossier dans workspace
+                sh 'mv web/* ../web/'
+                sh 'echo "les pages HTML générés : "'
+                sh 'ls ../web'
+                
+                // Nettoyer
+                deleteDirectory("../db")
 
                 sh 'echo "Build finished"'
             }
@@ -57,4 +64,8 @@ pipeline {
 
 def deleteAndCreateDirectory(String dir) {
     sh "rm -rf ${dir} && mkdir ${dir}"
+}
+
+def deleteDirectory(String dir) {
+    sh "rm -rf ${dir}"
 }

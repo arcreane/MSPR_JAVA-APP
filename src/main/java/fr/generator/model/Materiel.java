@@ -3,7 +3,6 @@ package fr.generator.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,16 +20,14 @@ public class Materiel {
         this.label = label;
     }
 
-    public static List<Materiel> getMaterielFromFile(String path) throws IOException {
+    public static List<Materiel> getLesMaterielsParFichier(String path) throws IOException {
         Path filePath = Path.of(path);
         List<String> lines = Files.readAllLines(filePath);
         List<Materiel> lesMateriels = new ArrayList<>();
-        for (String line: lines
-             ) {
+        for (String line: lines) {
             int idxFirstSpace = line.indexOf(" ");
             String code = line.substring(0, idxFirstSpace);
             String label = line.substring(idxFirstSpace).strip();
-            String[] lineAsArray = line.split(" ");
             Materiel m = new Materiel(code, label);
             lesMateriels.add(m);
         }

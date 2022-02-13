@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Getter
 @Setter
@@ -50,7 +49,7 @@ public class Employe {
                 '}';
     }
 
-    public static List<Employe> getLesEmployeParFichier(String baseDir, String path, List<Materiel> lesMateriels) throws IOException {
+    public static List<Employe> getLesEmployesParFichier(String baseDir, String path, List<Materiel> lesMateriels) throws IOException {
         Path fileListEmployes = Path.of(baseDir + path);
         List<String> lines = Files.readAllLines(fileListEmployes);
         List<Employe> lesEmployes = new ArrayList<>();
@@ -61,11 +60,11 @@ public class Employe {
             String[] lstMaterielsEmpruntes = lineAsList[1].split("\n");
             String imgUrl = baseDir + line + ".jpg";
             Employe e = new Employe(infoEmploye[0], infoEmploye[1], imgUrl, infoEmploye[2], infoEmploye[3]);
-            List<String> labelMateriels = lesMateriels.stream().map(Materiel::getCode).toList();
+            List<String> codeMateriels = lesMateriels.stream().map(Materiel::getCode).toList();
 
             for (String materiel : lstMaterielsEmpruntes){
-                if(labelMateriels.contains(materiel)){
-                    e.addMateriel(lesMateriels.get(labelMateriels.indexOf(materiel)));
+                if(codeMateriels.contains(materiel)){
+                    e.addMateriel(lesMateriels.get(codeMateriels.indexOf(materiel)));
                 }
             }
             lesEmployes.add(e);

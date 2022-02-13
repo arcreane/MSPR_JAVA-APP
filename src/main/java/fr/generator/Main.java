@@ -9,11 +9,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Start Generating HTML Pages .....");
+        System.out.println("Start Generating HTML Pages ..... 🤞");
 
-        List<Materiel> lesMateriels = Materiel.getMaterielFromFile("./db/liste.txt");
+        List<Materiel> lesMateriels = Materiel.getLesMaterielsParFichier("./db/liste.txt");
 
-        List<Employe> lesEmployes = Employe.getLesEmployeParFichier("./db/", "staff.txt", lesMateriels);
+        List<Employe> lesEmployes = Employe.getLesEmployesParFichier("./db/", "staff.txt", lesMateriels);
         for(Employe e : lesEmployes){
             System.out.println(e);
         }
@@ -21,7 +21,6 @@ public class Main {
         Utilitaire.CreateAgentsListPageByTemplate(lesEmployes);
         Utilitaire.CreateEachAgentsPageByTemplate(lesEmployes);
 
-
-        System.out.println("Finish :)");
+        System.out.println("Finish 😀");
     }
 }

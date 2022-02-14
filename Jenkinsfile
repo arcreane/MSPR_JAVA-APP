@@ -54,10 +54,18 @@ pipeline {
                 
                 // Nettoyer
                 deleteDirectory("../db")
+                deleteDirectory("db")
+                deleteDirectory("web")
 
                 sh 'echo "Build finished"'
             }
 
+        }
+        
+        stage('Deploy'){
+            steps{
+                sh 'echo "Start Deploy ...."'
+            }
         }
     }
 }

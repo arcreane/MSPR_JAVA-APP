@@ -59,9 +59,13 @@ public class Employe {
             String[] infoEmploye = lineAsList[0].split("\n");
             String[] lstMaterielsEmpruntes = lineAsList[1].split("\n");
 
+            //String imgUrl = baseDir + line + ".jpg";
+
             // image_url from github
             // https://raw.githubusercontent.com/Alexon1999/MSPR_GO-SECURI/master/cberthier.jpg
-            String imgUrl = baseDir + line + ".jpg";
+            String baseImageUrl = "https://raw.githubusercontent.com/Alexon1999/MSPR_GO-SECURI/master/";
+            String imgUrl = baseImageUrl + line + ".jpg";
+
             Employe e = new Employe(infoEmploye[0], infoEmploye[1], imgUrl, infoEmploye[2], infoEmploye[3]);
             List<String> codeMateriels = lesMateriels.stream().map(Materiel::getCode).toList();
 

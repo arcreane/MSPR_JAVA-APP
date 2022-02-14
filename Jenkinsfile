@@ -62,7 +62,7 @@ pipeline {
         
         stage('Deploy'){
             steps{
-                sh 'echo "Start Deploy ..."'
+                sh 'echo "Start Deploy ...."'
             }
         }
     }

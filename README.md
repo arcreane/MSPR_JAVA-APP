@@ -1,3 +1,7 @@
+## Setup Infrastructure
+- Voir le dossier setup 
+  - Mettre Jenkins dans un conteneur Docker
+
 ## Installer Maven et Créer un jar
 ```mvn clean package```
 

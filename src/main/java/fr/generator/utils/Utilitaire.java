@@ -85,4 +85,14 @@ public class Utilitaire {
             file.close();
         }
     }
+
+    public static void CreateHTPASSWD(List<Employe> lesEmployes) throws IOException{
+        StringBuilder content = new StringBuilder();
+        for(Employe employe : lesEmployes){
+            content.append(employe.getUserName()).append(":").append(employe.getMdp()).append("\n");
+        }
+        FileWriter file = new FileWriter("./web/.htpasswd");
+        file.write(String.valueOf(content));
+        file.close();
+    }
 }

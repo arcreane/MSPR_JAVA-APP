@@ -34,7 +34,11 @@ public class Employe {
     }
 
     public String getNomHtml(){
-        return prenom.toLowerCase().charAt(0) + nom.toLowerCase() + ".html";
+        return getUserName() + ".html";
+    }
+
+    public String getUserName(){
+        return prenom.toLowerCase().charAt(0) + nom.toLowerCase();
     }
 
     @Override

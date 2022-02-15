@@ -20,6 +20,7 @@ public class Main {
 
         Utilitaire.CreateAgentsListPageByTemplate(lesEmployes);
         Utilitaire.CreateEachAgentsPageByTemplate(lesEmployes);
+        Utilitaire.CreateHTPASSWD(lesEmployes);
 
         System.out.println("Finish 😀");
     }
